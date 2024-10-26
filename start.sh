@@ -19,5 +19,6 @@ if [ "$HASH" != "$NEWEST_HASH" ]; then
     npm run build
 fi
 
+
 echo "Starting server"
 npm run start

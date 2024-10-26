@@ -3,3 +3,4 @@ words.txt
 node_modules
 database.sqlite
 dist
+.commit

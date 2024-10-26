@@ -1,6 +1,7 @@
 #!/bin/bash
 
 HASH=$(git rev-parse HEAD)
+git fetch --all
 LOCAL_HASH=$(cat .git/refs/heads/main)
 echo "Current commit hash: $HASH"
 echo "Local commit hash: $LOCAL_HASH"

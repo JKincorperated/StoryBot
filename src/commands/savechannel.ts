@@ -9,6 +9,11 @@ const command = new SlashCommandBuilder()
 async function execute(interaction: ChatInputCommandInteraction<CacheType>, database: Database<sqlite3.Database, sqlite3.Statement>) {
     let channel = interaction.channel;
 
+    if (!interaction.memberPermissions?.has("Administrator")) {
+        await interaction.reply({ content: "You must be an administrator to use this command!", ephemeral: true });
+        return;
+    }
+
     if (!channel) {
         await interaction.reply("You must run this command in a channel!");
         return;

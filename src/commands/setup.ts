@@ -10,6 +10,11 @@ async function execute(interaction: ChatInputCommandInteraction<CacheType>, data
     let channel = interaction.channel;
     await interaction.deferReply({ ephemeral: true });
 
+    if (!interaction.memberPermissions?.has("Administrator")) {
+        await interaction.reply({ content: "You must be an administrator to use this command!", ephemeral: true });
+        return;
+    }
+
     if (!channel) {
         await interaction.reply("You must run this command in a channel!");
         return;

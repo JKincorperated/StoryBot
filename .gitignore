@@ -1,0 +1,4 @@
+words.txt
+.env
+node_modules
+database.sqlite

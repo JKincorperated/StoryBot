@@ -11,17 +11,17 @@ async function execute(interaction: ChatInputCommandInteraction<CacheType>, data
     await interaction.deferReply({ ephemeral: true });
 
     if (!interaction.memberPermissions?.has("Administrator")) {
-        await interaction.reply({ content: "You must be an administrator to use this command!", ephemeral: true });
+        await interaction.editReply("You must be an administrator to use this command!");
         return;
     }
 
     if (!channel) {
-        await interaction.reply("You must run this command in a channel!");
+        await interaction.editReply("You must run this command in a channel!");
         return;
     }
 
     if (!channel.isTextBased()) {
-        await interaction.reply("You must run this command in a text channel!");
+        await interaction.editReply("You must run this command in a text channel!");
         return;
     }
 
@@ -29,7 +29,7 @@ async function execute(interaction: ChatInputCommandInteraction<CacheType>, data
         interaction.guildId
     ]);
     if (entry) {
-        await interaction.reply({ content: "StoryBot is already setup in this server!", ephemeral: true});
+        await interaction.editReply("StoryBot is already setup in this server!");
         return;
     }
 
@@ -59,7 +59,7 @@ async function execute(interaction: ChatInputCommandInteraction<CacheType>, data
         ""
     ]);
 
-    await interaction.reply({ content: "Setup complete!", ephemeral: true });
+    await interaction.editReply("Setup complete!");
 }
 
 

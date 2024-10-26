@@ -18,6 +18,15 @@ var db: Database<sqlite3.Database, sqlite3.Statement>;
   client.login(config.DISCORD_TOKEN)
 })();
 
+client.on(Events.GuildCreate, async (guild) => {
+  console.log("Joined a new guild: " + guild.name);
+  let cmds: SlashCommandBuilder[] = [];
+  commands.forEach((command, _name) => {
+    cmds.push(command.slash);
+  });
+  guild.commands.set(cmds);
+})
+
 client.on("ready", async () => {
   console.log(`Bot has logged in! ${client.user?.displayName}#${client.user?.discriminator}`);
   console.log("Refreshing Commands...")

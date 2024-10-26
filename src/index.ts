@@ -2,18 +2,21 @@ import { Client, Events, SlashCommandBuilder, TextChannel } from "discord.js";
 import { config } from "./config";
 import { open_database, serverConfig } from "./database";
 import commands from "./commands"
+import { Database } from "sqlite";
+import sqlite3 from "sqlite3";
 
 const client = new Client({
   intents: ["Guilds", "GuildMessages", "MessageContent"],
 });
 
-console.log("Bot is starting...");
+var db: Database<sqlite3.Database, sqlite3.Statement>;
 
-console.log("Loading Database...")
-
-const db = await open_database();
-
-client.login(config.DISCORD_TOKEN)
+(async () => {
+  console.log("Bot is starting...");
+  console.log("Loading Database...")
+  db = await open_database();
+  client.login(config.DISCORD_TOKEN)
+})();
 
 client.on("ready", async () => {
   console.log(`Bot has logged in! ${client.user?.displayName}#${client.user?.discriminator}`);
